@@ -6,7 +6,7 @@ load_dotenv()
 
 with OpenRouter(api_key=os.getenv("OPENROUTER_API_KEY")) as client:
     response = client.responses.send(
-        model="google/gemma-4-26b-a4b-it:free",
+        model="google/gemma-4-26b-a4b-it",
         input="how many r's are in the word strawberry?",
     )
 
@@ -16,3 +16,5 @@ with OpenRouter(api_key=os.getenv("OPENROUTER_API_KEY")) as client:
 
     message = next(item for item in response.output if item.type == "message")
     print(next(part.text for part in message.content if part.type == "output_text"))
+
+    #OUTPUT: There are **3** r's in the word strawberry (st**r**awbe**rr**y).
